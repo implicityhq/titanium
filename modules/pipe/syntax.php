@@ -7,11 +7,15 @@ class Syntax {
   public static function insert($table, array $data) {
     $query = "INSERT INTO `{$table}`";
     $keys = []; $values = [];
+
+    // fields
     foreach ($data as $k => $v) {
       $keys[] = "`{$k}`";
       $values[] = "?";
     }
+
     $query .= ' (' . implode(', ', $keys) . ') VALUES (' . implode(', ', $values) . ')';
+
     return [$query, array_values($data)];
   }
 
@@ -19,6 +23,7 @@ class Syntax {
   public static function update($table, array $data, $where = '') {
     $query = "UPDATE `{$table}`"; $params = [];
 
+    // things that get updated
     $sets = [];
     foreach ($data as $k => $v) {
       $sets[] = "`{$k}` = ?";
@@ -55,6 +60,7 @@ class Syntax {
   public static function selectAll($table, $keys = [], $orderby = '') {
     $query = 'SELECT';
 
+    // if u only want certain fields
     if (count($keys) > 0) {
       $kys = [];
       foreach ($keys as $k) {
@@ -77,6 +83,7 @@ class Syntax {
   public static function selectWhere($table, $search, $keys = [], $orderby = '') {
     $query = 'SELECT'; $params = [];
 
+    // if u only want certain fields
     if (count($keys) > 0) {
       $kys = [];
       foreach ($keys as $k) {
