@@ -19,8 +19,6 @@ class Usher {
   public static function autoload($className) {
     if (($path = static::findFile($className))) {
       static::summon($path);
-    } else {
-      Disease::deadly("Class: '{$className}' does not exist.");
     }
   }
 

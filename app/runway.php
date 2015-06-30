@@ -1,4 +1,8 @@
-<? namespace App; defined('PATH') or die;
+<? defined('PATH') or die;
+
+use Titanium\Core\Usher as Usher;
+
+Usher::module(['network', 'pipe', 'chug']);
 
 use Titanium\Modules\Network as Network;
 use Titanium\Modules\Network\Router as Router;
@@ -13,9 +17,7 @@ Router::$controllersDirectory = APP . 'controllers/';
 /**
  * Routes
  */
-Router::GET('/', function ($response) {
-	$response->render('Hello!', ['Content-Type' => 'text/plain']);
-});
+Router::GET('/', 'Main@index');
 
 Router::GET('/other', 'Main@other');
 

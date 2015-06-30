@@ -10,7 +10,7 @@ Usher::$modulesPath = MODULES;
 
 // set log file
 Log::$currentLogFile = PATH . 'log/dev.log';
-Log::$enabled = false;
+// Log::$enabled = false;
 
 // make sure all errors are severe (dev only)
 Disease::$severe = true;
@@ -20,7 +20,5 @@ set_exception_handler(['Titanium\Core\Disease', 'control']);
 
 // tell php to autoload using Usher::autoload
 spl_autoload_register(['Titanium\Core\Usher', 'autoload']);
-
-Usher::module(['network', 'pipe', 'chug']);
 
 Usher::summon(APP . 'runway.php');
