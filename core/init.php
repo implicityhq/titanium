@@ -10,7 +10,7 @@ Usher::$modulesPath = MODULES;
 
 // set log file
 Log::$currentLogFile = PATH . 'log/dev.log';
-// Log::$enabled = false;
+Log::$enabled = false;
 
 // make sure all errors are severe (dev only)
 Disease::$severe = true;

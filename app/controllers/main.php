@@ -1,8 +1,13 @@
 <? defined('PATH') or die;
 
+use Titanium\Modules\Pipe as Pipe;
+use Titanium\Modules\Bank as Bank;
+
 class MainController {
   public function index($rs) {
-    $rs->render('MAIN@INDEX');
+    $pipe = new Pipe(Bank::get('db'));
+
+
   }
 
   public function other($rs) {

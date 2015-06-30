@@ -2,7 +2,11 @@
 
 use Titanium\Core\Usher as Usher;
 
-Usher::module(['network', 'pipe', 'chug']);
+Usher::module(['network', 'pipe', 'chug', 'bank']);
+
+use Titanium\Modules\Bank as Bank;
+
+Bank::set('db', ['localhost', 'root', 'root', 'titanium']);
 
 use Titanium\Modules\Network as Network;
 use Titanium\Modules\Network\Router as Router;

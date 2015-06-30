@@ -5,7 +5,7 @@ use Titanium\Modules\Network\Router as Router;
 use Titanium\Modules\Network\Response as Response;
 
 class Network extends Core\Module {
-  //
+  // handles routing
   public static function analyze() {
     $response = new Response;
     Router::provide($response);

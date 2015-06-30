@@ -7,3 +7,4 @@ TODO
   - [ ] error handling (404)
 - chug
 - pipe
+  - [ ] sanitize query arguments

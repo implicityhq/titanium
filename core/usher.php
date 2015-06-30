@@ -23,9 +23,9 @@ class Usher {
   }
 
   // loads a module and its classes
-  public static function module(array $paths) {
+  public static function module($paths) {
     // go through each module name (path)
-    foreach ($paths as $mod) {
+    foreach ((array) $paths as $mod) {
       $modPath = static::$modulesPath . $mod . '/';
       // make sure module exists
       if (file_exists($modPath)) {

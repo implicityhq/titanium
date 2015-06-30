@@ -15,7 +15,7 @@ class Bank {
     }
   }
 
-  public static function unset($key) {
+  public static function remove($key) {
     unset(static::$information[$key]);
   }
 }
