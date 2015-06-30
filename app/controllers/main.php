@@ -5,9 +5,11 @@ use Titanium\Modules\Bank as Bank;
 
 class MainController {
   public function index($rs) {
-    $pipe = new Pipe(Bank::get('db'));
+    $chug_test = new Pipe(Bank::get('db'));
+    $chug_test->table = 'chug_test';
 
-
+    $results = $chug_test->selectAll();
+    $rs->render(json_encode($results), ['Content-Type' => 'application/json']);
   }
 
   public function other($rs) {
