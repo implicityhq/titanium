@@ -1,0 +1,9 @@
+{
+  "name": "chug",
+  "author": "Jason Silberman",
+  "url": "https://github.com/implicityhq/titanium",
+  "dependencies": {
+    "bank": null,
+    "pipe": null
+  }
+}

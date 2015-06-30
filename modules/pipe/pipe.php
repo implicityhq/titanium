@@ -51,6 +51,12 @@ class Pipe extends Core\Module {
     return $this->exec($query, $params);
   }
 
+  // update some stuff
+  public function update(array $data, $where = '') {
+    list($query, $params) = Syntax::update($this->table, $data, $where);
+    return $this->exec($query, $params);
+  }
+
   // run a query and get results
   public function query($sql, $params = []) {
     $query = $this->db->prepare($sql);
