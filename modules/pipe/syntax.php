@@ -1,5 +1,7 @@
 <? namespace Titanium\Modules\Pipe; defined('PATH') or die;
 
+// all calls to this class return a tuple [query, params]
+
 class Syntax {
   // create an insert query
   public static function insert($table, array $data) {
@@ -7,19 +9,20 @@ class Syntax {
     $keys = []; $values = [];
     foreach ($data as $k => $v) {
       $keys[] = "`{$k}`";
-      $values[] = "'{$v}'";
+      $values[] = "?";
     }
     $query .= ' (' . implode(', ', $keys) . ') VALUES (' . implode(', ', $values) . ')';
-    return $query;
+    return [$query, array_values($data)];
   }
 
   // create an update query. where array [key, equation (=/~), value]
   public static function update($table, array $data, $where = '') {
-    $query = "UPDATE `{$table}`";
+    $query = "UPDATE `{$table}`"; $params = [];
 
     $sets = [];
     foreach ($data as $k => $v) {
-      $sets[] = "`{$k}` = '{$v}'";
+      $sets[] = "`{$k}` = ?";
+      $params[] = $v;
     }
 
     $query .= ' SET ' . implode(', ', $sets);
@@ -37,14 +40,15 @@ class Syntax {
           list($key, $equation, $value) = $q;
 
           $equation = str_replace('~', 'LIKE', $equation);
-          $wheres[] = "`{$key}` {$equation} '{$value}'";
+          $wheres[] = "`{$key}` {$equation} ?";
+          $params[] = $value;
         }
 
         $query .= ' WHERE ' . implode(' AND ', $wheres);
       }
     }
 
-    return $query;
+    return [$query, $params];
   }
 
   // create a select all query
@@ -66,12 +70,12 @@ class Syntax {
     if (! empty($orderby)) {
       $query .= " ORDER BY {$orderby}";
     }
-    return $query;
+    return [$query, []];
   }
 
   // create a select where query. where array [key, equation (=/~), value]
   public static function selectWhere($table, $search, $keys = [], $orderby = '') {
-    $query = 'SELECT';
+    $query = 'SELECT'; $params = [];
 
     if (count($keys) > 0) {
       $kys = [];
@@ -97,7 +101,8 @@ class Syntax {
         list($key, $equation, $value) = $q;
 
         $equation = str_replace('~', 'LIKE', $equation);
-        $wheres[] = "`{$key}` {$equation} '{$value}'";
+        $wheres[] = "`{$key}` {$equation} ?";
+        $params[] = $value;
       }
 
       $query .= ' WHERE ' . implode(' AND ', $wheres);
@@ -106,12 +111,12 @@ class Syntax {
     if (! empty($orderby)) {
       $query .= " ORDER BY {$orderby}";
     }
-    return $query;
+    return [$query, $params];
   }
 
   // create a delete query.
   public static function deleteWhere($table, $where = '') {
-    $query = "DELETE FROM `{$table}`";
+    $query = "DELETE FROM `{$table}`"; $params = [];
 
     if (! empty($where)) {
       if (is_string($where)) {
@@ -123,13 +128,14 @@ class Syntax {
           list($key, $equation, $value) = $q;
 
           $equation = str_replace('~', 'LIKE', $equation);
-          $wheres[] = "`{$key}` {$equation} '{$value}'";
+          $wheres[] = "`{$key}` {$equation} ?";
+          $params[] = $value;
         }
 
         $query .= ' WHERE ' . implode(' AND ', $wheres);
       }
     }
 
-    return $query;
+    return [$query, $params];
   }
 }
