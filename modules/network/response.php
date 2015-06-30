@@ -8,6 +8,6 @@ class Response {
     }
     print 'RENDER ----' . PHP_EOL;
     print $data;
-    print PHP_EOL . '--- RENDER';
+    print PHP_EOL . '---- RENDER';
   }
 }
