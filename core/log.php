@@ -10,10 +10,16 @@ class Log {
 
   public static $enabled = true;
 
-  // write to the error log
+  // log some error
   public static function error($type, $error) {
-    $now = microtime(true);
+    $now = microtime();
     $message = "[{$now}] [ERROR] ({$type}): {$error}" . PHP_EOL;
+    static::write($message);
+  }
+
+  // log some stuff
+  public static function info($type, $info) {
+    $message = "[{$now}] [INFO] ({$type}): {$info}" . PHP_EOL;
     static::write($message);
   }
 
