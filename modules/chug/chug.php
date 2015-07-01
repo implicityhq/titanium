@@ -3,6 +3,7 @@
 use Titanium\Core as Core;
 use Titanium\Modules\Bank as Bank;
 use Titanium\Modules\Pipe as Pipe;
+use Titanium\Modules\Crypto as Crypto;
 
 class Chug extends Core\Module {
   protected $changedVars = []; // keys of changed variables
@@ -49,6 +50,7 @@ class Chug extends Core\Module {
 
   // save for the first time
   protected function create() {
+    $this->id = Crypto::generateString(12);
     $data = get_object_vars($this);
   }
 }
