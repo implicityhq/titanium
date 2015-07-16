@@ -19,6 +19,7 @@ class Log {
 
   // log some stuff
   public static function info($type, $info) {
+    $now = microtime();
     $message = "[{$now}] [INFO] ({$type}): {$info}" . PHP_EOL;
     static::write($message);
   }

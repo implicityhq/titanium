@@ -4,6 +4,7 @@
   "url": "https://github.com/implicityhq/titanium",
   "dependencies": {
     "bank": null,
-    "pipe": null
+    "pipe": null,
+    "crypto": null
   }
 }

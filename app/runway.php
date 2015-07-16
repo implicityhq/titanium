@@ -2,7 +2,7 @@
 
 use Titanium\Core\Usher as Usher;
 
-Usher::module(['network', 'pipe', 'chug', 'bank']);
+Usher::module(['network', 'pipe', 'chug', 'bank', 'crypto']);
 
 use Titanium\Modules\Bank as Bank;
 
