@@ -49,8 +49,21 @@ class Chug extends Core\Module {
 
   // find some models with criteria (optional)
   public static function findAll($criteria = []) {
-    static::openDB();
+    static::openDB(); $results = [];
 
+    $query = static::$db->selectAllWhere($criteria);
+
+    foreach ($query as $row) {
+      $row->hasBeenCreated = true;
+
+      $class = get_called_class();
+
+      $object = new $class($row);
+
+      $results[] = $object;
+    }
+
+    return $results;
   }
 
   /**

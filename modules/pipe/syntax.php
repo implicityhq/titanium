@@ -118,7 +118,7 @@ class Syntax {
     } else {
       $wheres = [];
 
-      if (is_array($where[0])) {
+      if (is_array($where[0])) { // check if [] or [[]]
         foreach ($where as $q) {
           list($key, $equation, $value) = $q;
 
