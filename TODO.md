@@ -8,5 +8,5 @@ TODO
 - chug
 - pipe
   - [x] sanitize query arguments
-  - [ ] create a better way to search if only one case. ie ['id', '=', 'name'] instead of [['id', '=', 'name']] and use the same function to parse search query everywhere.
+  - [x] create a better way to search if only one case. ie ['id', '=', 'name'] instead of [['id', '=', 'name']] and use the same function to parse search query everywhere.
   - [ ] catch sql errors

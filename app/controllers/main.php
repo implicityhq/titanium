@@ -11,10 +11,9 @@ class MainController {
     // $chug_test = new Pipe(Bank::get('db'));
     // $chug_test->table = 'Persons';
     //
-    // $results = $chug_test->selectAllWhere([['email', '~', '%oo%']]);
+    // $results = $chug_test->selectAllWhere(['email', '~', '%@%']);
     // $rs->render(json_encode($results), ['Content-Type' => 'application/json']);
 
-    
   }
 
   public function other($rs) {

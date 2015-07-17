@@ -36,7 +36,7 @@ class Chug extends Core\Module {
   public static function findWithId($id) {
     static::openDB();
 
-    $results = static::$db->selectWhere([['id', '=', $id]]);
+    $results = static::$db->selectWhere(['id', '=', $id]);
 
     $results->hasBeenCreated = true;
 
@@ -90,7 +90,7 @@ class Chug extends Core\Module {
       $data[$c] = $this->{$c};
     }
 
-    $status = static::$db->update($data, [['id', '=', $this->id]]);
+    $status = static::$db->update($data, ['id', '=', $this->id]);
     if (! $status) {
       Core\Disease::annoyance("Could not save model '" . get_class($this) . "' with id {$this->id}");
 

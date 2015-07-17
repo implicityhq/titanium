@@ -36,21 +36,9 @@ class Syntax {
      * WHERE
      */
     if (! empty($where)) {
-      if (is_string($where)) {
-        $query .= " WHERE {$where}";
-      } else {
-        $wheres = [];
-
-        foreach ($where as $q) {
-          list($key, $equation, $value) = $q;
-
-          $equation = str_replace('~', 'LIKE', $equation);
-          $wheres[] = "`{$key}` {$equation} ?";
-          $params[] = $value;
-        }
-
-        $query .= ' WHERE ' . implode(' AND ', $wheres);
-      }
+      list($wString, $wParams) = static::parseWhere($where);
+      $query .= $wString;
+      $params = array_merge($params, $wParams);
     }
 
     return [$query, $params];
@@ -99,21 +87,9 @@ class Syntax {
     /**
      * WHERE
      */
-    if (is_string($search)) {
-      $query .= " WHERE {$search}";
-    } else {
-      $wheres = [];
-
-      foreach ($search as $q) {
-        list($key, $equation, $value) = $q;
-
-        $equation = str_replace('~', 'LIKE', $equation);
-        $wheres[] = "`{$key}` {$equation} ?";
-        $params[] = $value;
-      }
-
-      $query .= ' WHERE ' . implode(' AND ', $wheres);
-    }
+     list($wString, $wParams) = static::parseWhere($search);
+     $query .= $wString;
+     $params = array_merge($params, $wParams);
 
     if (! empty($orderby)) {
       $query .= " ORDER BY {$orderby}";
@@ -126,11 +102,23 @@ class Syntax {
     $query = "DELETE FROM `{$table}`"; $params = [];
 
     if (! empty($where)) {
-      if (is_string($where)) {
-        $query .= " WHERE {$where}";
-      } else {
-        $wheres = [];
+      list($wString, $wParams) = static::parseWhere($where);
+      $query .= $wString;
+      $params = array_merge($params, $wParams);
+    }
 
+    return [$query, $params];
+  }
+
+  // parses where and returns a string
+  protected static function parseWhere($where = '') {
+    $result = ''; $params = [];
+    if (is_string($where)) {
+      $result = " WHERE {$where}";
+    } else {
+      $wheres = [];
+
+      if (is_array($where[0])) {
         foreach ($where as $q) {
           list($key, $equation, $value) = $q;
 
@@ -138,11 +126,17 @@ class Syntax {
           $wheres[] = "`{$key}` {$equation} ?";
           $params[] = $value;
         }
+      } else {
+        list($key, $equation, $value) = $where;
 
-        $query .= ' WHERE ' . implode(' AND ', $wheres);
+        $equation = str_replace('~', 'LIKE', $equation);
+        $wheres[] = "`{$key}` {$equation} ?";
+        $params[] = $value;
       }
+
+      $result = ' WHERE ' . implode(' AND ', $wheres);
     }
 
-    return [$query, $params];
+    return [$result, $params];
   }
 }
