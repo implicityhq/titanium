@@ -12,3 +12,5 @@ TODO
   - [ ] catch sql errors
 - api
   - [ ] create api response module
+- crypto
+  - [ ] create an encryption class like teddy/bear
