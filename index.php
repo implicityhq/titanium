@@ -1,5 +1,6 @@
 <? namespace Titanium;
 
+date_default_timezone_set('America/Los_Angeles');
 ini_set('display_errors', true);
 define('PATH', dirname(__FILE__) . '/');
 define('CORE', PATH . 'core/');
