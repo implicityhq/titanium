@@ -11,12 +11,16 @@ Bank::set('db', ['localhost', 'root', 'root', 'titanium', 'mysql']);
 use Titanium\Modules\Network as Network;
 use Titanium\Modules\Network\Router as Router;
 use Titanium\Modules\Network\URL as URL;
+use Titanium\Modules\Network\Response as Response;
 
 // override the baseURL since we are not running this in the root dir
 URL::$baseURL = '/titanium';
 
 // set the base dir for controllers
 Router::$controllersDirectory = APP . 'controllers/';
+
+// set the base dir for views
+Response::$viewsDirectory = APP . 'views/';
 
 /**
  * Routes

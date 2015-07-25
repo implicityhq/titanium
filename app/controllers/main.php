@@ -21,7 +21,7 @@ class MainController {
   }
 
   public function team($rs, $member) {
-    $rs->render('TEAM/' . $member);
+    $rs->view('team/member')->render(['member' => $member]);
   }
 }
 
