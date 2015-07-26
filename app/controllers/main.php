@@ -4,6 +4,7 @@ use Titanium\Modules\Pipe as Pipe;
 use Titanium\Modules\Bank as Bank;
 use Titanium\Modules\Chug as Chug;
 use Titanium\Modules\Crypto as Crypto;
+use Titanium\Modules\Crypto\Random as Random;
 
 class MainController {
   public function index($rs) {
@@ -51,6 +52,6 @@ class MainController {
 
 class Person extends Chug {
   public function setId() {
-    $this->id = Crypto::generateString(16);
+    $this->id = Random::generateString(16);
   }
 }

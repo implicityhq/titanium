@@ -1,6 +1,6 @@
-<? namespace Titanium\Modules; defined('PATH') or die;
+<? namespace Titanium\Modules\Crypto; defined('PATH') or die;
 
-class Crypto {
+class Random {
   public static function generateString($length = 8) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     return (string)static::generateRandom($characters, $length);

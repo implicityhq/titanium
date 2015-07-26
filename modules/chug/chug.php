@@ -3,7 +3,7 @@
 use Titanium\Core as Core;
 use Titanium\Modules\Bank as Bank;
 use Titanium\Modules\Pipe as Pipe;
-use Titanium\Modules\Crypto as Crypto;
+use Titanium\Modules\Crypto\Random as Random;
 use Titanium\Modules\Chug\Store as Store;
 
 class Chug extends Core\Module {
@@ -179,6 +179,6 @@ class Chug extends Core\Module {
 
   // set the id. this can be overrided to create a different type of id
   public function setId() {
-    $this->id = Crypto::generateInt(12);
+    $this->id = Random::generateInt(12);
   }
 }
