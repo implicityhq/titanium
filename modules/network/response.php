@@ -42,7 +42,7 @@ class Response {
   }
 
   // this function parses a view and returns the html and the layout
-  private function parseView($path, array $data = []) {
+  private function parseView($path, $data = []) {
     ob_start();
     extract($data, EXTR_SKIP);
     require $path;
@@ -53,7 +53,7 @@ class Response {
   }
 
   // this will parse the layout and the view to create the final html
-  private function parseLayout($path, array $data = []) {
+  private function parseLayout($path, $data = []) {
     ob_start();
     extract($data, EXTR_SKIP);
     require $path;

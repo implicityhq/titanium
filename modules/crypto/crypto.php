@@ -4,7 +4,7 @@ use Titanium\Modules\Crypto\Random as Random;
 
 class Crypto {
 
-  public static $keyHashRounds = 6;
+  public static $keyHashRounds = '06';
 
   public static function encrypt($string, $key, $iv = null, $options = []) {
     $options = array_merge(['base64' => true, 'hashKey' => true], $options);
@@ -41,7 +41,7 @@ class Crypto {
 		$pad = Random::generateString(32);
 		$salt = substr(str_replace('+', '.', base64_encode(sha1($time, true))), 0, 22);
     $hashedKey = crypt(implode(':', [$time, $key, $pad]), '$2a$' . static::$keyHashRounds . '$' . $salt);
-    return md5($hashedKey);
+    return hash('sha256', $hashedKey);
   }
 
   public static function createIV() {

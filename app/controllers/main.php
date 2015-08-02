@@ -1,9 +1,10 @@
 <? defined('PATH') or die;
 
-use Titanium\Modules\Pipe as Pipe;
-use Titanium\Modules\Bank as Bank;
+// use Titanium\Modules\Pipe as Pipe;
+// use Titanium\Modules\Bank as Bank;
 use Titanium\Modules\Chug as Chug;
-use Titanium\Modules\Crypto as Crypto;
+// use Titanium\Modules\Crypto as Crypto;
+use Titanium\Modules\Octopus as Octopus;
 use Titanium\Modules\Crypto\Random as Random;
 
 class MainController {
@@ -15,16 +16,11 @@ class MainController {
     // $results = $chug_test->selectAllWhere(['email', '~', '%@%']);
     // $rs->render(json_encode($results), ['Content-Type' => 'application/json']);
 
-    $startTime = microtime(true);
-    $key = 'super secret password';
-    $message = 'there\'s always a message in the bottle';
-    list($encryptedString, $hashedKey, $iv) = Crypto::encrypt($message, $key);
-    $decryptedString = Crypto::decrypt($encryptedString, $hashedKey, $iv);
-    $endTime = microtime(true);
+    // $o = Octopus::initiateUser('9801', 'supersecureftw');
+    // var_dump($o);
 
-    assert($message === $decryptedString);
-    print 'YAY there twins' . PHP_EOL;
-    print $startTime . PHP_EOL . $endTime;
+    $jason = Person::findWithId('rH3UBxiees95Qd3H');
+    var_dump(Octopus::verifyPassword($jason, 'supersecureftw'));
   }
 
   public function other($rs) {
