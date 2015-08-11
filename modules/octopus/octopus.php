@@ -13,7 +13,6 @@ class Octopus {
   public static $hashRounds = 1000;
 
   public static function initiateUser($userId, $password) {
-    $userId = (string)$userId;
     $key = Random::generateString(32);
     $recoveryCode = Random::generateString(32);
     $F_u = base64_encode(static::encryptWithKey($key, $recoveryCode));

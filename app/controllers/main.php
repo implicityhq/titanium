@@ -5,6 +5,7 @@
 use Titanium\Modules\Chug as Chug;
 // use Titanium\Modules\Crypto as Crypto;
 use Titanium\Modules\Octopus as Octopus;
+use Titanium\Modules\Octopus\Safe as Safe;
 use Titanium\Modules\Crypto\Random as Random;
 
 class MainController {
@@ -21,6 +22,24 @@ class MainController {
 
     $jason = Person::findWithId('rH3UBxiees95Qd3H');
     var_dump(Octopus::verifyPassword($jason, 'supersecureftw'));
+
+    $keys = Safe::generateKeys();
+    $priv = $keys['privateKey'];
+    $pub = $keys['publicKey'];
+
+    $message = 'hello, this is a secret message.';
+
+    $enc = Safe::lockWithPrivateKey($message, $priv);
+    $dec = Safe::unlockWithPublicKey($enc, $pub);
+
+    assert($dec === $message);
+
+    $enc = Safe::lockWithPublicKey($message, $pub);
+    $dec = Safe::unlockWithPrivateKey($enc, $priv);
+
+    assert($dec === $message);
+
+    print 'All Good.' . PHP_EOL;
   }
 
   public function other($rs) {
