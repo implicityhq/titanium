@@ -6,7 +6,7 @@ Usher::module(['network', 'pipe', 'chug', 'bank', 'crypto', 'octopus']);
 
 use Titanium\Modules\Bank as Bank;
 
-Bank::set('db', ['localhost', 'root', 'root', 'titanium', 'mysql', 33060]);
+Bank::set('db', ['127.0.0.1', 'homestead', 'secret', 'titanium', 'mysql', 33060]);
 
 use Titanium\Modules\Network as Network;
 use Titanium\Modules\Network\Router as Router;
