@@ -9,12 +9,12 @@ class Pipe extends Core\Module {
   public $fetchStyle;
 
   // create a connection
-  public function __construct($host, $username = '', $password = '', $database = '', $driver = 'mysql') {
+  public function __construct($host, $username = '', $password = '', $database = '', $driver = 'mysql', $port = 3306) {
     if (is_array($host)) {
-      list($host, $username, $password, $database, $driver) = $host;
+      list($host, $username, $password, $database, $driver, $port) = $host;
     }
 
-    $this->db = new \PDO("{$driver}:host={$host};dbname={$database};charset=utf8", $username, $password);
+    $this->db = new \PDO("{$driver}:host={$host};port={$port};dbname={$database};charset=utf8", $username, $password);
 
     $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
