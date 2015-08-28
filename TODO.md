@@ -16,3 +16,6 @@ TODO
   - [x] create an encryption class like teddy/bear
 - Octopus
   - [ ] make it work like: https://security.stackexchange.com/questions/48047/location-to-store-an-encryption-key/48085#48085
+
+
+create some type of config files

@@ -10,7 +10,7 @@ use Titanium\Modules\Crypto\Random as Random;
 
 class MainController {
   public function index($rs) {
-    header('Content-Type: text/plain');
+    // header('Content-Type: text/plain');
     // $chug_test = new Pipe(Bank::get('db'));
     // $chug_test->table = 'Persons';
     //
